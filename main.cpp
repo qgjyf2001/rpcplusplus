@@ -29,7 +29,6 @@ int main()
     for (auto each:result)
         std::cout<<each<<std::endl;*/
     handler->addRpcHandler("add",add);
-
     poolServer *server=new poolServer(handler,8080);
     server->startForever();
     return 0;
