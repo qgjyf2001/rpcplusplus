@@ -12,7 +12,7 @@ std::map\<std::string,T\>
 
 ### 使用方法
 
-在server端只需使用rpcHandler::addHandler将函数和他的签名添加即可。
+在server端只需使用rpcHandler::addRpcHandler将函数和他的签名添加，或者直接使用宏AddRpcHandler进行添加。
 在client端要先调用auto functor=client.makeRpcCall\<FunctionType\>(FunctionName);生成一个仿函数，然后调用这个仿函数即可。
 
 详细使用方法可以参照server.cpp和client.cpp
