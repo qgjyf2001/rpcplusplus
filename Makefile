@@ -1,4 +1,4 @@
-all:main
+all:server client
 
 CC=g++
 CXXFLAGS=-std=c++17 -g
@@ -9,7 +9,7 @@ THREADPOOLTARGET=$(THREADPOOL)/threadPool.o
 JSONPARSER=./json
 JSONPARSERTARGET=$(JSONPARSER)/jsonParser.o
 RPC=./rpc
-RPCTARGET=$(RPC)/rpcParser.o $(RPC)/rpcServer.o
+RPCTARGET=$(RPC)/rpcParser.o $(RPC)/rpcServer.o $(RPC)/rpcClient.o
 TCP=./tcp
 TCPTARGET=$(TCP)/tcpServer.o
 
@@ -22,11 +22,16 @@ $(JSONPARSERTARGET):$(JSONPARSER)/jsonParser.cpp
 $(RPC)/%.o:$(RPC)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
-main.o:main.cpp
+client.o:client.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
-main:main.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) -lpthread
+client:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) -lpthread
+	$(CC) -o $@ $^
+server.o:server.cpp
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+server:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) -lpthread
 	$(CC) -o $@ $^
 clean:
 	find . -name '*.o' -type f -print -exec rm -rf {} \;
-	rm main
+	rm client
+	rm server
 

@@ -1,5 +1,14 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/qgjyf2001/work/rpc'
-make: Nothing to be done for 'all'.
+g++ -I./include -std=c++17 -g -c server.cpp -o server.o
+g++ -I./include -std=c++17 -g -c json/jsonParser.cpp -o json/jsonParser.o
+g++ -I./include -std=c++17 -g -c rpc/rpcParser.cpp -o rpc/rpcParser.o
+g++ -I./include -std=c++17 -g -c rpc/rpcServer.cpp -o rpc/rpcServer.o
+g++ -I./include -std=c++17 -g -c rpc/rpcClient.cpp -o rpc/rpcClient.o
+g++ -I./include -std=c++17 -g -c threadPool/threadPool.cpp -o threadPool/threadPool.o
+g++ -I./include -std=c++17 -g -c tcp/tcpServer.cpp -o tcp/tcpServer.o
+g++ -o server server.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o /usr/lib/x86_64-linux-gnu/libpthread.so
+g++ -I./include -std=c++17 -g -c client.cpp -o client.o
+g++ -o client client.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o /usr/lib/x86_64-linux-gnu/libpthread.so
 make: Leaving directory '/home/qgjyf2001/work/rpc'
  

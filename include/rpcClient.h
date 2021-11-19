@@ -1,6 +1,11 @@
 #ifndef RPCCLIENT_H
 #define RPCCLIENT_H
 #include <iostream>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <strings.h>
+#include <unistd.h>
 
 #include "rpcHandler.h"
 class rpcClient;
@@ -27,13 +32,24 @@ public:
 };
 class rpcClient
 {
+private:
+    int sockfd;
 public:
-    
-    rpcClient(std::string ip,std::string port);
+    rpcClient(std::string ip,int port);
+    template <typename returnType,typename ...args>
+    auto makeRpcCall(std::string name,std::function<returnType(args...)>)
+    {
+        return rpcCall<returnType,args...>(this,name);
+    }
     template <typename returnType,typename ...args>
     auto makeRpcCall(std::string name,returnType(args...))
     {
         return rpcCall<returnType,args...>(this,name);
+    }
+    template <typename F>
+    auto makeRpcCall(std::string name)
+    {
+        return makeRpcCall(name,(F)nullptr);
     }
     JsonParser remoteCall(JsonParser json);
     ~rpcClient();

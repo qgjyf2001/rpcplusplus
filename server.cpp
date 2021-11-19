@@ -15,8 +15,6 @@ std::vector<std::string>  add(std::vector<std::string> a,std::vector<long long> 
 }
 int main()
 {    
-    
-    rpcHandler* handler=new rpcHandler();
     /*rpcSender sender;
     handler.addRpcHandler("add",add);  
     std::vector<std::string> a={"aaaa","bbbb","cccc"};
@@ -28,6 +26,7 @@ int main()
     auto result=sender.getRPC<std::vector<std::string>>(response);
     for (auto each:result)
         std::cout<<each<<std::endl;*/
+    rpcHandler* handler=new rpcHandler();
     handler->addRpcHandler("add",add);
     poolServer *server=new poolServer(handler,8080);
     server->startForever();
