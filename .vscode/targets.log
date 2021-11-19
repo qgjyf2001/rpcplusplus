@@ -1,0 +1,446 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target '-lpthread', needed by 'main'.  Stop.
+ 
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Nov 19 12:05:05 2021
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_CLASS = user
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 1
+# makefile (from 'Makefile', line 14)
+TCPTARGET = $(TCP)/tcpServer.o
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=fcitx
+# makefile
+CURDIR := /home/qgjyf2001/work/rpc
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/share/code/code
+# environment
+JOURNAL_STREAM = 8:45427
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from 'Makefile', line 7)
+THREADPOOL = ./threadPool
+# automatic
+@F = $(notdir $@)
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# environment
+USERNAME = qgjyf2001
+# makefile (from 'Makefile', line 4)
+CXXFLAGS = -std=c++17 -g
+# environment
+MAKELEVEL := 0
+# environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+MANAGERPID = 1467
+# environment
+CLUTTER_IM_MODULE = fcitx
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+LC_NAME = zh_CN.UTF-8
+# environment
+VSCODE_CWD = /home/qgjyf2001
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/qgjyf2001/.local/bin:~/anaconda3/bin:/home/qgjyf2001/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1681,unix/wycfather:/tmp/.ICE-unix/1681
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'Makefile', line 8)
+THREADPOOLTARGET = $(THREADPOOL)/threadPool.o
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=50a9fddc-b1e9-4ca0-a496-2364db743386&iid=50a9fddc-b1e9-4ca0-a496-2364db743386&sid=50a9fddc-b1e9-4ca0-a496-2364db743386","uploadToServer":true}
+# environment
+INVOCATION_ID = 4cca4ddeb3bd4929a3522b366cce35ce
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2035
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :1
+# environment
+GTK_IM_MODULE = fcitx
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/qgjyf2001/work/rpc
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 1637
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/qgjyf2001
+# environment
+LD_LIBRARY_PATH = :/usr/local/lib
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+LOGNAME = qgjyf2001
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
++F = $(notdir $+)
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+LC_TIME = zh_CN.UTF-8
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = fcitx
+# environment
+SHLVL = 0
+# makefile (from 'Makefile', line 3)
+CC = g++
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-50615d8b-1c1a-4fcf-adfc-6fe103141e79.sock
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = qgjyf2001
+# environment
+LC_MONETARY = zh_CN.UTF-8
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 5)
+INCLUDE = ./include
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from 'Makefile', line 9)
+JSONPARSER = ./json
+# environment
+LC_TELEPHONE = zh_CN.UTF-8
+# default
+MAKE_COMMAND := make
+# environment
+VSCODE_NODE_CACHED_DATA_DIR = /home/qgjyf2001/.config/Code/CachedData/054a9295330880ed74ceaedda236253b4f39a335
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = zh_CN:zh:en_US:en
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-fe830ca3-1.56.2-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/qgjyf2001/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# environment
+LC_PAPER = zh_CN.UTF-8
+# makefile (from 'Makefile', line 11)
+RPC = ./rpc
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
+# makefile (from 'Makefile', line 12)
+RPCTARGET = $(RPC)/rpcParser.o $(RPC)/rpcServer.o
+# makefile (from 'Makefile', line 13)
+TCP = ./tcp
+# default
+MAKEFILES := 
+# environment
+LC_NUMERIC = zh_CN.UTF-8
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+LC_MEASUREMENT = zh_CN.UTF-8
+# environment
+LC_ALL = C
+# environment
+QT4_IM_MODULE = fcitx
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 10)
+JSONPARSERTARGET = $(JSONPARSER)/jsonParser.o
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+LC_IDENTIFICATION = zh_CN.UTF-8
+# default
+.RECIPEPREFIX := 
+# environment
+LC_ADDRESS = zh_CN.UTF-8
+# environment
+LANG = C
+# environment
+VSCODE_PID = 2035
+# variable set hash-table stats:
+# Load=126/1024=12%, Rehash=0, Collisions=25/171=15%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2067, inode 1106279): 15 files, no impossibilities.
+# rpc (device 2067, inode 1106237): 4 files, no impossibilities so far.
+# tcp (device 2067, inode 1106290): 2 files, no impossibilities so far.
+
+# 21 files, no impossibilities in 3 directories.
+
+# Implicit Rules
+
+tcp/%.o: tcp/%.cpp
+#  recipe to execute (from 'Makefile', line 19):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+rpc/%.o: rpc/%.cpp
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# 2 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+all: main
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+rpc/rpcServer.o: rpc/rpcServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcServer'
+#  Last modified 2021-11-19 12:04:49.052360086
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+Makefile:
+ 
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:04:38.824436005
+#  File has been updated.
+#  Successfully updated.
+
+json/jsonParser.o: json/jsonParser.cpp
+#  Implicit rule search has not been done.
+#  Last modified 2021-11-19 12:04:47.588371009
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 21):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+rpc/rpcParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 11:46:41.642406186
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+main.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:04:01.608704061
+#  File has been updated.
+#  Successfully updated.
+
+threadPool/threadPool.o: threadPool/threadPool.cpp
+#  Implicit rule search has not been done.
+#  Last modified 2021-11-19 12:04:49.708355184
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 17):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+tcp/tcpServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 09:09:51.476761501
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+-lpthread:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 30):
+	find . -name '*.o' -type f -print -exec rm -rf {} \;
+	rm main
+
+rpc/rpcParser.o: rpc/rpcParser.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcParser'
+#  Last modified 2021-11-19 12:04:48.096367222
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+rpc/rpcServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:01:00.361795467
+#  File has been updated.
+#  Successfully updated.
+
+main: main.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o threadPool/threadPool.o tcp/tcpServer.o -lpthread
+#  Implicit rule search has not been done.
+#  Last modified 2021-11-19 12:04:50.43234977
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) -o $@ $^
+
+main.o: main.cpp
+#  Implicit rule search has not been done.
+#  Last modified 2021-11-19 12:04:46.876376317
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 26):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+json/jsonParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-10-19 11:00:06.90757
+#  File has been updated.
+#  Successfully updated.
+
+tcp/tcpServer.o: tcp/tcpServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'tcpServer'
+#  Last modified 2021-11-19 12:04:50.340350458
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 19):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+threadPool/threadPool.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-08 10:47:49.712468
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=19/1024=2%, Rehash=0, Collisions=0/51=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 44 / storage = 488 B / avg = 11 B
+# current buf: size = 8162 B / used = 488 B / count = 44 / avg = 11 B
+
+# strcache performance: lookups = 68 / hit rate = 35%
+# hash-table stats:
+# Load=44/8192=1%, Rehash=0, Collisions=1/68=1%
+# Finished Make data base on Fri Nov 19 12:05:05 2021
+
+ 

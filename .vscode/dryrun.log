@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/qgjyf2001/work/rpc'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/qgjyf2001/work/rpc'
+ 
