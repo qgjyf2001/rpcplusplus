@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/qgjyf2001/work/rpc'
 g++ -I./include -std=c++17 -g -c server.cpp -o server.o
 g++ -I./include -std=c++17 -g -c json/jsonParser.cpp -o json/jsonParser.o

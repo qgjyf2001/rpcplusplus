@@ -4,6 +4,9 @@
 #include <map>
 #include "serialization.h"
 #include <functional>
+
+#define AddRpcHandler(name) addRpcHandler(#name,name)
+
 template <typename function>
 struct  getParamsLength;
 
