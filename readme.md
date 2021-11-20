@@ -4,9 +4,14 @@
 ### 支持的类型
 
 目前仅支持参数类型和返回类型如下的函数：
+
 int,long long等整数类型
+
 std::vector\<T\>
+
 std::map\<std::string,T\>
+
+std::pair\<U,V\>
 
 支持诸如std::vector\<std::map\<std::string,int\>\>等嵌套类型
 

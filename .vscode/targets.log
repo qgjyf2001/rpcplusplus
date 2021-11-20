@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target '-lpthread', needed by 'server'.  Stop.
+ 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Nov 20 06:57:12 2021
+# Make data base, printed on Sun Nov 21 03:14:05 2021
 
 # Variables
 
@@ -49,7 +51,7 @@ VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:44746
+JOURNAL_STREAM = 8:44551
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -75,7 +77,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1496
+MANAGERPID = 1507
 # environment
 CLUTTER_IM_MODULE = fcitx
 # environment
@@ -93,7 +95,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1708,unix/wycfather:/tmp/.ICE-unix/1708
+SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1723,unix/wycfather:/tmp/.ICE-unix/1723
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 8)
@@ -105,7 +107,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=50a9fddc-b1e9-4ca0-a496-2364db743386&iid=50a9fddc-b1e9-4ca0-a496-2364db743386&sid=50a9fddc-b1e9-4ca0-a496-2364db743386","uploadToServer":true}
 # environment
-INVOCATION_ID = 10ce476473bd4d8fa42cb90e9b17b1da
+INVOCATION_ID = c302213fb70d4aee92a21fa75826c5e4
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -115,7 +117,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2063
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2082
 # automatic
 %F = $(notdir $%)
 # environment
@@ -129,7 +131,7 @@ PWD = /home/qgjyf2001/work/rpc
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1665
+SSH_AGENT_PID = 1680
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -169,7 +171,7 @@ CC = g++
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1bb2dae2-9847-4151-997a-a22fe5032a5e.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-fc6efc8a-1670-4bb2-a053-829fb2a17036.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -261,9 +263,9 @@ LC_ADDRESS = zh_CN.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2063
+VSCODE_PID = 2082
 # variable set hash-table stats:
-# Load=126/1024=12%, Rehash=0, Collisions=28/187=15%
+# Load=126/1024=12%, Rehash=0, Collisions=27/182=15%
 
 # Pattern-specific Variable Values
 
@@ -271,11 +273,11 @@ VSCODE_PID = 2063
 
 # Directories
 
-# . (device 2067, inode 1106279): 15 files, no impossibilities.
-# rpc (device 2067, inode 1106237): No files, no impossibilities so far.
-# tcp (device 2067, inode 1106290): No files, no impossibilities so far.
+# . (device 2051, inode 1106279): 18 files, no impossibilities.
+# rpc (device 2051, inode 1106237): 6 files, no impossibilities so far.
+# tcp (device 2051, inode 1106290): 2 files, no impossibilities so far.
 
-# 15 files, no impossibilities in 3 directories.
+# 26 files, no impossibilities in 3 directories.
 
 # Implicit Rules
  
@@ -292,20 +294,20 @@ rpc/%.o: rpc/%.cpp
 
 # Files
 
-# Not a target:
-rpc/rpcClient.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+rpc/rpcClient.o: rpc/rpcClient.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcClient'
+#  Last modified 2021-11-19 23:23:47.046625473
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 all: server client
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+#  File has not been updated.
 
 client.o: client.cpp
 #  Implicit rule search has not been done.
@@ -321,17 +323,14 @@ client: client.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient
 #  recipe to execute (from 'Makefile', line 28):
 	$(CC) -o $@ $^
 
-# Not a target:
-rpc/rpcServer.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+rpc/rpcServer.o: rpc/rpcServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcServer'
+#  Last modified 2021-11-19 23:23:46.326682245
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 # Not a target:
 Makefile:
@@ -342,54 +341,48 @@ Makefile:
 
 json/jsonParser.o: json/jsonParser.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2021-11-19 23:23:44.890795764
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 21):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 server.o: server.cpp
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2021-11-19 23:23:44.198850643
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := server.o
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := server.cpp
-# automatic
-# | := 
-# automatic
-# < := server.cpp
-# automatic
-# ^ := server.cpp
-# automatic
-# ? := server.cpp
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/16=12%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 30):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 server: server.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o -lpthread
 #  Implicit rule search has not been done.
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+#  Last modified 2021-11-19 23:23:48.414517979
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 32):
 	$(CC) -o $@ $^
 
+# Not a target:
+rpc/rpcParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:11:51.748586001
+#  File has been updated.
+#  Successfully updated.
+
 threadPool/threadPool.o: threadPool/threadPool.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2021-11-19 23:23:47.702573883
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 17):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+tcp/tcpServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:18:55.440061694
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -398,9 +391,16 @@ threadPool/threadPool.o: threadPool/threadPool.cpp
 #  File has not been updated.
 
 # Not a target:
+rpc/rpcClient.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 17:28:37.295621859
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
 -lpthread:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
+#  Implicit rule search has been done.
+#  File does not exist.
 #  File has not been updated.
 
 # Not a target:
@@ -418,51 +418,66 @@ clean:
 	rm client
 	rm server
 
-# Not a target:
-rpc/rpcParser.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-json/jsonParser.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-server.cpp:
+rpc/rpcParser.o: rpc/rpcParser.cpp
 #  Implicit rule search has been done.
-#  Last modified 2021-11-19 17:31:27.74851423
+#  Implicit/static pattern stem: 'rpcParser'
+#  Last modified 2021-11-19 23:23:45.390756196
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+rpc/rpcServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:28:53.015479952
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-tcp/tcpServer.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+json/jsonParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-10-19 11:00:06.90757
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+server.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 23:06:10.776265618
+#  File has been updated.
+#  Successfully updated.
+
+tcp/tcpServer.o: tcp/tcpServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'tcpServer'
+#  Last modified 2021-11-19 23:23:48.318525508
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 19):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 # Not a target:
 threadPool/threadPool.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-08 10:47:49.712468
+#  File has been updated.
+#  Successfully updated.
 
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=0/56=0%
+# Load=24/1024=2%, Rehash=0, Collisions=0/71=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 38 / storage = 401 B / avg = 10 B
-# current buf: size = 8162 B / used = 401 B / count = 38 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 52 / storage = 594 B / avg = 11 B
+# current buf: size = 8162 B / used = 594 B / count = 52 / avg = 11 B
 
-# strcache performance: lookups = 69 / hit rate = 44%
+# strcache performance: lookups = 91 / hit rate = 42%
 # hash-table stats:
-# Load=38/8192=0%, Rehash=0, Collisions=1/69=1%
-# Finished Make data base on Sat Nov 20 06:57:12 2021
+# Load=52/8192=1%, Rehash=0, Collisions=1/91=1%
+# Finished Make data base on Sun Nov 21 03:14:05 2021
 
  

@@ -29,6 +29,16 @@ public:
         static constexpr auto value=true;
     };
     template <typename T>
+    struct  isPair
+    {
+        static constexpr auto value=false;
+    };
+    template <typename U,typename V>
+    struct  isPair<std::pair<U,V>>
+    {
+        static constexpr auto value=true;
+    }; 
+    template <typename T>
     struct  isInteger
     {
         using rT=typename std::remove_const<T>::type;
@@ -74,6 +84,15 @@ public:
             }
             return result;
         }
+        else if constexpr(isPair<T>::value)
+        {
+            auto &&[u,v]=data;
+            std::string arr="[]";
+            JsonParser jsonArray(&arr,JsonParser::ARRAY);
+            jsonArray.add(doSerialize(u));
+            jsonArray.add(doSerialize(v));
+            return jsonArray;
+        }
         else
             throw std::invalid_argument("unsupported type");
     }
@@ -104,6 +123,14 @@ public:
                 result[u]=doUnSerialize<typename T::value_type::second_type>(v);
             }
             return result;
+        }
+        else if constexpr(isPair<T>::value)
+        {
+            std::vector<JsonParser> result;
+            data.foreach([&](JsonParser &json){
+                result.push_back(json);
+            });
+            return std::make_pair(doUnSerialize<typename T::first_type>(result[0]),doUnSerialize<typename T::second_type>(result[1]));
         }
         else
             throw std::invalid_argument("unsupported type");
