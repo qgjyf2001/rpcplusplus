@@ -76,7 +76,7 @@ public:
         }
         else if constexpr(isMap<T>::value)
         {
-            static_assert(isString<decltype((data.begin())->first)>::value,"key should be string");
+            static_assert(isString<typename T::value_type::first_type>::value,"key should be string");
             JsonParser result;
             for (auto &&[u,v]:data)
             {
