@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Apr  5 13:36:49 2022
+# Make data base, printed on Tue Apr  5 13:48:14 2022
 
 # Variables
 
@@ -117,7 +117,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6702
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7862
 # automatic
 %F = $(notdir $%)
 # environment
@@ -173,7 +173,7 @@ CC = g++
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a9305dcf-1d57-4d98-8422-666746b521bb.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d1d8b7a0-ea90-4774-956e-998c961f20ba.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -269,7 +269,7 @@ LC_ADDRESS = zh_CN.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6702
+VSCODE_PID = 7862
 # variable set hash-table stats:
 # Load=130/1024=13%, Rehash=0, Collisions=30/213=14%
 
@@ -278,15 +278,15 @@ VSCODE_PID = 6702
 # No pattern-specific variable values.
 
 # Directories
+ 
 
 # balancers (device 2051, inode 1247520): No files, no impossibilities so far.
-# . (device 2051, inode 1247330): 18 files, no impossibilities.
+# . (device 2051, inode 1247330): 19 files, no impossibilities.
 # cache (device 2051, inode 1247332): No files, no impossibilities so far.
 # rpc (device 2051, inode 1247487): No files, no impossibilities so far.
 # tcp (device 2051, inode 1247491): No files, no impossibilities so far.
- 
 
-# 18 files, no impossibilities in 5 directories.
+# 19 files, no impossibilities in 5 directories.
 
 # Implicit Rules
 
@@ -407,7 +407,7 @@ testServer: server.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcCl
 # Not a target:
 balancer.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-05 13:27:13.634903489
+#  Last modified 2022-04-05 13:37:28.245637309
 #  File has been updated.
 #  Successfully updated.
 
@@ -526,12 +526,12 @@ threadPool/threadPool.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 52 / storage = 641 B / avg = 12 B
-# current buf: size = 8162 B / used = 641 B / count = 52 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 53 / storage = 651 B / avg = 12 B
+# current buf: size = 8162 B / used = 651 B / count = 53 / avg = 12 B
 
-# strcache performance: lookups = 95 / hit rate = 45%
+# strcache performance: lookups = 96 / hit rate = 44%
 # hash-table stats:
-# Load=52/8192=1%, Rehash=0, Collisions=1/95=1%
-# Finished Make data base on Tue Apr  5 13:36:49 2022
+# Load=53/8192=1%, Rehash=0, Collisions=1/96=1%
+# Finished Make data base on Tue Apr  5 13:48:14 2022
 
  
