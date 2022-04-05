@@ -16,6 +16,7 @@ public:
     rpcServer(rpcHandler* handler,int maxThreads=4);
     void doRpc(int* sockfd,std::string httpRequest,std::function<void(int*)> handleClose);
     void free(int sockfd);
+    void registService(std::string service,std::string ip,int port);
     ~rpcServer();
 };
 

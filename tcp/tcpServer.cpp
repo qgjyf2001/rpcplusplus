@@ -25,6 +25,9 @@ void poolServer::startForever()
     //listen
     listen(listenfd,LISTENQ);
 
+    if (handler->service!="")
+        RpcSever.registService(handler->service,ipAddress,port);
+
     //accept
     auto *clientfd=new pollfd[maxClient];
     for (int i=1;i<maxClient;i++)

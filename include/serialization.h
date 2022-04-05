@@ -1,7 +1,9 @@
 #ifndef SERIALIZATION_H
 #define SERIALIZATION_H
 #include "jsonParser.h"
-#include "type_traits"
+
+#include <type_traits>
+#include <set>
 class serialize
 {
 private:
@@ -28,6 +30,17 @@ public:
     {
         static constexpr auto value=true;
     };
+    template <typename T>
+    struct  isSet
+    {
+        static constexpr auto value=false;
+    };
+    template <typename U,typename V>
+    struct  isSet<std::set<U,V>>
+    {
+        static constexpr auto value=true;
+    };
+    
     template <typename T>
     struct  isPair
     {
@@ -58,10 +71,21 @@ public:
     };
     template <typename T>
     static JsonParser doSerialize(T data){   
-        if constexpr(isString<T>::value)
+        if constexpr(std::is_same<T,JsonParser>::value) {
+            return data;
+        }
+        else if constexpr(isString<T>::value)
         {
             return JsonParser(std::make_shared<std::string>(std::string(data)));
-        }  
+        }
+        else if constexpr(isSet<T>::value) 
+        {
+            std::string arr="[]";
+            JsonParser jsonArray(&arr,JsonParser::ARRAY);
+            for (auto &&each:data)
+                jsonArray.add(doSerialize(each));
+            return jsonArray;
+        }
         else if constexpr(isInteger<T>::value)
         {
             return JsonParser(new std::string(std::to_string(data)),JsonParser::INT);
@@ -99,13 +123,24 @@ public:
     template <typename T> 
     static T doUnSerialize(JsonParser data)
     {
-        if constexpr(isString<T>::value)
+        if constexpr(std::is_same<T,JsonParser>::value) {
+            return data;
+        }
+        else if constexpr(isString<T>::value)
         {
             return data.toString();
         }
         else if constexpr(isInteger<T>::value)
         {
             return data.toInt();
+        }
+        else if constexpr(isSet<T>::value)
+        {
+            T result;
+            data.foreach([&](JsonParser& json){ 
+                result.insert(doUnSerialize<typename T::value_type>(json));
+            });
+            return result;
         }
         else if constexpr(isVector<T>::value)
         {

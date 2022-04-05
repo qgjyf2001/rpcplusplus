@@ -1,4 +1,5 @@
 #include "rpcServer.h"
+#include "rpcClient.h"
 rpcServer::rpcServer(rpcHandler *handler,int maxThreads)
 {
     this->handler=handler;
@@ -8,6 +9,12 @@ void rpcServer::free(int sockfd)
 {
     if (uncompleted.find(sockfd)!=uncompleted.end())
         uncompleted.erase(sockfd);
+}
+void rpcServer::registService(std::string service,std::string ip,int port) {
+    rpcClient client("127.0.0.1",8080);
+    using registFunc=std::function<std::map<std::string,std::string>(std::string,std::string)>;
+    auto regist=client.makeRpcCall<registFunc>("insertService");
+    regist(service,ip+":"+std::to_string(port));
 }
 void rpcServer::doRpc(int* sockfd,std::string httpRequest,std::function<void(int*)> handleClose)
 {
@@ -54,6 +61,12 @@ void rpcServer::doRpc(int* sockfd,std::string httpRequest,std::function<void(int
             }
         }
         JsonParser rpc(&request.message);
+        std::string ip;
+        sockaddr_in sa;
+        socklen_t lenAddr=sizeof(sa);
+        if (!getpeername(*sockfd,(sockaddr*)&sa,&lenAddr)) {
+            ip=std::string(inet_ntoa(sa.sin_addr))+":"+std::to_string(ntohs(sa.sin_port));
+        }
         auto result=handler->handleRPC(rpc);
         auto responseText=rpcMessage(result).toString();
         int wrote=write(*sockfd,responseText.c_str(),responseText.length());

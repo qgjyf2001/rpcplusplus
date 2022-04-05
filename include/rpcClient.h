@@ -34,8 +34,11 @@ class rpcClient
 {
 private:
     int sockfd;
+    std::string ipPort;
+    std::string service="";
 public:
     rpcClient(std::string ip,int port);
+    rpcClient(std::string service,std::string hostIp="127.0.0.1",int hostPort=8080);
     template <typename returnType,typename ...args>
     auto makeRpcCall(std::string name,std::function<returnType(args...)>)
     {

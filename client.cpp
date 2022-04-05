@@ -4,7 +4,7 @@ using add2Func=std::function<std::vector<std::string>(std::vector<std::pair<int,
 
 int main()
 {    
-    rpcClient client("127.0.0.1",8080);
+    rpcClient client("test.service");
     auto add=client.makeRpcCall<addFunc>("add");
     auto add2=client.makeRpcCall<add2Func>("add2");
     std::vector<std::string> a={"abcd","efgh","ijkl"};

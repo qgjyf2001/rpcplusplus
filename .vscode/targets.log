@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Dec  9 11:19:45 2021
+# Make data base, printed on Tue Apr  5 13:25:11 2022
 
 # Variables
 
@@ -30,7 +30,7 @@ VSCODE_LOG_NATIVE = false
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
 IM_CONFIG_PHASE = 1
-# makefile (from 'Makefile', line 14)
+# makefile (from 'Makefile', line 13)
 TCPTARGET = $(TCP)/tcpServer.o
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
@@ -41,7 +41,7 @@ GDMSESSION = ubuntu
 # environment
 XMODIFIERS = @im=fcitx
 # makefile
-CURDIR := /home/qgjyf2001/work/rpc
+CURDIR := /home/qgjyf2001/work/balancer
 # makefile
 SHELL = /bin/sh
 # environment
@@ -49,12 +49,12 @@ VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:47302
+JOURNAL_STREAM = 8:42748
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from 'Makefile', line 7)
+# makefile (from 'Makefile', line 6)
 THREADPOOL = ./threadPool
 # automatic
 @F = $(notdir $@)
@@ -73,6 +73,7 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
+ 
 VSCODE_VERBOSE_LOGGING = true
 # environment
 MANAGERPID = 1504
@@ -93,11 +94,13 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1717,unix/wycfather:/tmp/.ICE-unix/1717
+SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1722,unix/wycfather:/tmp/.ICE-unix/1722
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'Makefile', line 8)
+# makefile (from 'Makefile', line 7)
 THREADPOOLTARGET = $(THREADPOOL)/threadPool.o
+# makefile (from 'Makefile', line 16)
+BALANCER = ./balancers
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -105,7 +108,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=50a9fddc-b1e9-4ca0-a496-2364db743386&iid=50a9fddc-b1e9-4ca0-a496-2364db743386&sid=50a9fddc-b1e9-4ca0-a496-2364db743386","uploadToServer":true}
 # environment
-INVOCATION_ID = 0f819a969af646c69ac7831ff6a2a7f9
+INVOCATION_ID = 4ccb05f49fba48a29a429dbe68d89acb
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -115,7 +118,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3302
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4984
 # automatic
 %F = $(notdir $%)
 # environment
@@ -125,11 +128,11 @@ GTK_IM_MODULE = fcitx
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /home/qgjyf2001/work/rpc
+PWD = /home/qgjyf2001/work/balancer
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1674
+SSH_AGENT_PID = 1679
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -164,12 +167,14 @@ MAKECMDGOALS := all
 QT_IM_MODULE = fcitx
 # environment
 SHLVL = 0
+# makefile (from 'Makefile', line 17)
+BALANCERTARGET = $(BALANCER)/baseBalancer.o $(BALANCER)/minimumBalancer.o $(BALANCER)/hashBalancer.o $(BALANCER)/connectionBalancer.o
 # makefile (from 'Makefile', line 3)
 CC = g++
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4d96ef73-c41a-443a-ab8f-3414cdfe7f56.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-93fbacc8-e002-4d43-a651-2746c0cccfaf.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -184,7 +189,7 @@ INCLUDE = ./include
 XDG_CURRENT_DESKTOP = Unity
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from 'Makefile', line 9)
+# makefile (from 'Makefile', line 8)
 JSONPARSER = ./json
 # environment
 LC_TELEPHONE = zh_CN.UTF-8
@@ -200,6 +205,8 @@ VSCODE_NODE_CACHED_DATA_DIR = /home/qgjyf2001/.config/Code/CachedData/054a929533
 LANGUAGE = zh_CN:zh:en_US:en
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-fe830ca3-1.56.2-main.sock
+# makefile (from 'Makefile', line 14)
+CACHE = ./cache
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -214,15 +221,17 @@ BREAKPAD_DUMP_LOCATION = /home/qgjyf2001/.config/Code/exthost Crash Reports
 GDK_BACKEND = x11
 # environment
 LC_PAPER = zh_CN.UTF-8
-# makefile (from 'Makefile', line 11)
+# makefile (from 'Makefile', line 15)
+CACHETARGET = $(CACHE)/redisSet.o $(CACHE)/cache.o
+# makefile (from 'Makefile', line 10)
 RPC = ./rpc
 # environment
 QT_ACCESSIBILITY = 1
 # environment
 DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
-# makefile (from 'Makefile', line 12)
+# makefile (from 'Makefile', line 11)
 RPCTARGET = $(RPC)/rpcParser.o $(RPC)/rpcServer.o $(RPC)/rpcClient.o
-# makefile (from 'Makefile', line 13)
+# makefile (from 'Makefile', line 12)
 TCP = ./tcp
 # default
 MAKEFILES := 
@@ -242,7 +251,7 @@ QT4_IM_MODULE = fcitx
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # automatic
 ^F = $(notdir $^)
-# makefile (from 'Makefile', line 10)
+# makefile (from 'Makefile', line 9)
 JSONPARSERTARGET = $(JSONPARSER)/jsonParser.o
 # default
 SUFFIXES := 
@@ -261,9 +270,9 @@ LC_ADDRESS = zh_CN.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3302
+VSCODE_PID = 4984
 # variable set hash-table stats:
-# Load=126/1024=12%, Rehash=0, Collisions=28/187=15%
+# Load=130/1024=13%, Rehash=0, Collisions=30/213=14%
 
 # Pattern-specific Variable Values
 
@@ -271,34 +280,62 @@ VSCODE_PID = 3302
 
 # Directories
 
-# . (device 2067, inode 1106279): 18 files, no impossibilities.
-# rpc (device 2067, inode 1106237): No files, no impossibilities so far.
-# tcp (device 2067, inode 1106290): No files, no impossibilities so far.
+# balancers (device 2051, inode 1247520): 13 files, no impossibilities so far.
+# . (device 2051, inode 1247330): 24 files, no impossibilities.
+# cache (device 2051, inode 1247332): 7 files, no impossibilities so far.
+# rpc (device 2051, inode 1247487): 6 files, no impossibilities so far.
+# tcp (device 2051, inode 1247491): 2 files, no impossibilities so far.
 
-# 18 files, no impossibilities in 3 directories.
+# 52 files, no impossibilities in 5 directories.
 
 # Implicit Rules
- 
+
+balancers/%.o: balancers/%.cpp
+#  recipe to execute (from 'Makefile', line 20):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+cache/%.o: cache/%.cpp
+#  recipe to execute (from 'Makefile', line 22):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 tcp/%.o: tcp/%.cpp
-#  recipe to execute (from 'Makefile', line 19):
+#  recipe to execute (from 'Makefile', line 26):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 rpc/%.o: rpc/%.cpp
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 30):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
-# 2 implicit rules, 0 (0.0%) terminal.
+# 4 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
-# Not a target:
-rpc/rpcClient.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+balancers/connectionBalancer.o: balancers/connectionBalancer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'connectionBalancer'
+#  Last modified 2022-04-05 13:19:33.931236873
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 20):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
-all: server client
+rpc/rpcClient.o: rpc/rpcClient.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcClient'
+#  Last modified 2022-04-05 13:19:25.599237199
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 30):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+balancers/hashBalancer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-27 19:52:05.874699668
+#  File has been updated.
+#  Successfully updated.
+
+all: balancer testClient testServer
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -309,23 +346,35 @@ all: server client
 
 client.o: client.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 26):
+#  Last modified 2022-04-05 13:19:35.263236821
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 37):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
-client: client.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o -lpthread
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 28):
-	$(CC) -o $@ $^
-
 # Not a target:
-rpc/rpcServer.o:
+balancers/baseBalancer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:17:11.61524303
+#  File has been updated.
+#  Successfully updated.
+
+testClient: client.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-04-05 13:19:35.419236815
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 43):
+	$(CC) -o $@ $^ -lpthread
+
+rpc/rpcServer.o: rpc/rpcServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcServer'
+#  Last modified 2022-04-05 13:19:24.791237231
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 30):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 # Not a target:
 .SUFFIXES:
@@ -333,24 +382,35 @@ rpc/rpcServer.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+cache/redisSet.o: cache/redisSet.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'redisSet'
+#  Last modified 2022-04-05 13:19:27.539237123
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 22):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-11-19 17:05:34.129524195
+#  Last modified 2022-04-05 13:25:09.552329332
 #  File has been updated.
 #  Successfully updated.
 
 json/jsonParser.o: json/jsonParser.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 21):
+#  Last modified 2022-04-05 13:19:23.251237291
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
+ 
 server.o: server.cpp
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
-#  Last modified 2021-11-20 20:53:12.600538852
+#  Last modified 2022-04-05 13:23:08.533338126
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -371,25 +431,79 @@ server.o: server.cpp
 # ? := server.cpp
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=2/16=12%
-#  recipe to execute (from 'Makefile', line 30):
+#  recipe to execute (from 'Makefile', line 35):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
-server: server.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o -lpthread
+# Not a target:
+balancers/minimumBalancer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-27 19:45:19.504510685
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+rpc/rpcParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:11:51.748586
+#  File has been updated.
+#  Successfully updated.
+
+cache/cache.o: cache/cache.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'cache'
+#  Last modified 2022-04-05 13:19:28.539237084
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 22):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+threadPool/threadPool.o: threadPool/threadPool.cpp
 #  Implicit rule search has not been done.
-#  Last modified 2021-11-20 20:53:16.884354586
+#  Last modified 2022-04-05 13:19:26.247237174
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 24):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+testServer: server.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o
+#  Implicit rule search has not been done.
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/6=0%
-#  recipe to execute (from 'Makefile', line 32):
-	$(CC) -o $@ $^
+#  recipe to execute (from 'Makefile', line 41):
+	$(CC) -o $@ $^ -lpthread -lgflags
 
-threadPool/threadPool.o: threadPool/threadPool.cpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+# Not a target:
+balancer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:16:06.723283263
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+tcp/tcpServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:18:55.22723839
+#  File has been updated.
+#  Successfully updated.
+
+balancers/baseBalancer.o: balancers/baseBalancer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'baseBalancer'
+#  Last modified 2022-04-05 13:19:30.367237013
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 20):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+balancers/connectionBalancer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-27 22:41:21.329202947
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -398,71 +512,137 @@ threadPool/threadPool.o: threadPool/threadPool.cpp
 #  File has not been updated.
 
 # Not a target:
--lpthread:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+rpc/rpcClient.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:18:29.119239416
+#  File has been updated.
+#  Successfully updated.
+
+balancers/hashBalancer.o: balancers/hashBalancer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'hashBalancer'
+#  Last modified 2022-04-05 13:19:32.935236912
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 20):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 # Not a target:
 client.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:16:14.195268326
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 34):
+#  recipe to execute (from 'Makefile', line 46):
 	find . -name '*.o' -type f -print -exec rm -rf {} \;
-	rm client
-	rm server
+	rm balancer
+	rm testServer
+	rm testClient
 
-# Not a target:
-rpc/rpcParser.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-json/jsonParser.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-server.cpp:
+balancers/minimumBalancer.o: balancers/minimumBalancer.cpp
 #  Implicit rule search has been done.
-#  Last modified 2021-11-21 13:17:20.841967495
+#  Implicit/static pattern stem: 'minimumBalancer'
+#  Last modified 2022-04-05 13:19:31.343236974
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 20):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+rpc/rpcParser.o: rpc/rpcParser.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcParser'
+#  Last modified 2022-04-05 13:19:23.751237272
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 30):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+rpc/rpcServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:18:40.415238971
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-tcp/tcpServer.o:
+cache/redisSet.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-19 09:22:02.652131854
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+json/jsonParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-10-19 11:00:06.90757
+#  File has been updated.
+#  Successfully updated.
+
+balancer.o: balancer.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-04-05 13:19:22.539237319
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 33):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+balancer: balancer.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o cache/redisSet.o cache/cache.o balancers/baseBalancer.o balancers/minimumBalancer.o balancers/hashBalancer.o balancers/connectionBalancer.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-04-05 13:19:34.319236858
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 39):
+	$(CC) -o $@ $^ -lhiredis -lpthread -lcrypto
+
+# Not a target:
+server.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 13:23:57.381737648
+#  File has been updated.
+#  Successfully updated.
+
+tcp/tcpServer.o: tcp/tcpServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'tcpServer'
+#  Last modified 2022-04-05 13:19:26.887237149
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 26):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+cache/cache.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-19 09:46:42.316183087
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 threadPool/threadPool.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2021-11-08 10:47:49.712468
+#  File has been updated.
+#  Successfully updated.
 
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=0/56=0%
+# Load=38/1024=4%, Rehash=0, Collisions=5/118=4%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 37 / storage = 390 B / avg = 10 B
-# current buf: size = 8162 B / used = 390 B / count = 37 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 96 / storage = 1386 B / avg = 14 B
+# current buf: size = 8162 B / used = 1386 B / count = 96 / avg = 14 B
 
-# strcache performance: lookups = 72 / hit rate = 48%
+# strcache performance: lookups = 159 / hit rate = 39%
 # hash-table stats:
-# Load=37/8192=0%, Rehash=0, Collisions=1/72=1%
-# Finished Make data base on Thu Dec  9 11:19:45 2021
+# Load=96/8192=1%, Rehash=0, Collisions=2/159=1%
+# Finished Make data base on Tue Apr  5 13:25:11 2022
 
  

@@ -9,7 +9,12 @@
 
 template <typename function>
 struct  getParamsLength;
-
+template<typename returnType,typename... args>
+struct  getParamsLength<std::function<returnType(args...)>>
+{
+    using type=std::tuple<args...>;
+    static constexpr auto value=sizeof...(args);
+};
 template<typename returnType,typename... args>
 struct  getParamsLength<returnType(args...)>
 {
@@ -33,6 +38,11 @@ class rpcHandler
 {
 private:
     template <int length,typename returnType,typename... args>
+    std::tuple<args...> _genType(JsonParser& json,std::function<returnType(args...)>)
+    {
+        return genType<length,args...>(json);
+    }
+    template <int length,typename returnType,typename... args>
     std::tuple<args...> _genType(JsonParser& json,returnType(args...))
     {
         return genType<length,args...>(json);
@@ -50,6 +60,9 @@ private:
     }
     std::map<std::string,std::function<JsonParser(JsonParser&)>> rpcMap;
 public:
+    rpcHandler(std::string service=""):service(service) {
+
+    }
     JsonParser handleRPC(JsonParser json)
     {
         return rpcMap[json["name"].toString()](json);
@@ -70,6 +83,7 @@ public:
     void removeRpcHandler(std::string name){
         rpcMap.erase(name);
     }
+    std::string service;
 };
 class rpcSender
 {

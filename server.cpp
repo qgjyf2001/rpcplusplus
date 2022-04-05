@@ -3,8 +3,14 @@
 #include "rpcParser.h"
 #include "tcpServer.h"
 #include "serialization.h"
+
+#include <gflags/gflags.h>
+
+DEFINE_int32(port,10011,"port");
+
 std::vector<std::string>  add(std::vector<std::string> a,std::vector<long long> b)
 {
+    std::cout<<"[add]call"<<std::endl;
     if (a.size()!=b.size())
         return std::vector<std::string>();
     std::vector<std::string> result;
@@ -23,23 +29,13 @@ std::vector<std::string> add2(std::vector<std::pair<int,std::string>> a,int b)
     }
     return result;
 }
-int main()
+int main(int argc,char** argv)
 {    
-    /*rpcSender sender;
-    handler.addRpcHandler("add",add);  
-    std::vector<std::string> a={"aaaa","bbbb","cccc"};
-    std::vector<long long> b={12345,23456,34567};
-    JsonParser rpc=sender.sendRPC(a,b);
-    rpc["name"]="add";
-
-    JsonParser response=handler.handleRPC(rpc);
-    auto result=sender.getRPC<std::vector<std::string>>(response);
-    for (auto each:result)
-        std::cout<<each<<std::endl;*/
-    rpcHandler* handler=new rpcHandler();
+    google::ParseCommandLineFlags(&argc,&argv,true);
+    rpcHandler* handler=new rpcHandler("test.service");
     handler->AddRpcHandler(add);
     handler->AddRpcHandler(add2);
-    poolServer *server=new poolServer(handler,8080);
+    poolServer *server=new poolServer(handler,FLAGS_port);
     server->startForever();
     return 0;
 }
