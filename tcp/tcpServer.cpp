@@ -57,7 +57,7 @@ void poolServer::startForever()
             for (i=1;i<maxClient;i++)
                 if (clientfd[i].fd<0)
                 {            
-                    clientfd[i].events=POLLIN;
+                    clientfd[i].events=POLLIN|POLLOUT;
                     clientfd[i].fd=connfd;
                     break;
                 }
@@ -85,10 +85,15 @@ void poolServer::startForever()
                         clientfd[i].fd=-1;
                         continue;
                     }
-                    RpcSever.doRpc(&clientfd[i].fd,std::string(buf,n),[](int* sockfd){
-                            close(*sockfd);
-                            *sockfd=-1;
-                    });                    
+                    RpcSever.doRpc(clientfd[i].fd,std::string(buf,n));                    
+                }
+                if (clientfd[i].revents&POLLOUT) 
+                {
+                    bool result;
+                    auto content=RpcSever.getResult(clientfd[i].fd,result);
+                    if (!content.empty()) {
+                        int wrote=write(clientfd[i].fd,content.c_str(),content.length());
+                    }
                 }
             }
         }
