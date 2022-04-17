@@ -18,7 +18,7 @@ void rpcServer::registService(std::string service,std::string ip,int port) {
 }
 void rpcServer::doRpc(int* sockfd,std::string httpRequest,std::function<void(int*)> handleClose)
 {
-    pool->addThread([=](void *args){     
+    pool->addThread([=](){     
         signal(SIGPIPE , SIG_IGN);
         rpcMessage request(0,"");
         if (uncompleted.find(*sockfd)!=uncompleted.end())
@@ -70,7 +70,7 @@ void rpcServer::doRpc(int* sockfd,std::string httpRequest,std::function<void(int
         auto result=handler->handleRPC(rpc);
         auto responseText=rpcMessage(result).toString();
         int wrote=write(*sockfd,responseText.c_str(),responseText.length());
-    },&sockfd);
+    });
 }
 rpcServer::~rpcServer()
 {

@@ -53,7 +53,6 @@ std::map<std::string,std::string> eraseService(std::string service,std::string i
     }
 }
 int main() {
-
     bool result;
     rpcHandler* handler=new rpcHandler();
     handler->AddRpcHandler(newService);

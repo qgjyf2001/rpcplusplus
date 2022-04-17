@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Apr  5 13:48:14 2022
+# Make data base, printed on Sun Apr 17 15:40:44 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:42748
+JOURNAL_STREAM = 8:44862
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -75,7 +75,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1504
+MANAGERPID = 1544
 # environment
 CLUTTER_IM_MODULE = fcitx
 # environment
@@ -93,7 +93,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1722,unix/wycfather:/tmp/.ICE-unix/1722
+SESSION_MANAGER = local/wycfather:@/tmp/.ICE-unix/1763,unix/wycfather:/tmp/.ICE-unix/1763
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 7)
@@ -107,7 +107,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=50a9fddc-b1e9-4ca0-a496-2364db743386&iid=50a9fddc-b1e9-4ca0-a496-2364db743386&sid=50a9fddc-b1e9-4ca0-a496-2364db743386","uploadToServer":true}
 # environment
-INVOCATION_ID = 4ccb05f49fba48a29a429dbe68d89acb
+INVOCATION_ID = 3c540f635cff414591fe3fb9779dbb51
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -117,7 +117,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 7862
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3531
 # automatic
 %F = $(notdir $%)
 # environment
@@ -131,7 +131,7 @@ PWD = /home/qgjyf2001/work/balancer
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1679
+SSH_AGENT_PID = 1720
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -173,7 +173,7 @@ CC = g++
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d1d8b7a0-ea90-4774-956e-998c961f20ba.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-bf887442-0a2e-43b8-a4a3-c0e12d05af2e.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -269,7 +269,7 @@ LC_ADDRESS = zh_CN.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 7862
+VSCODE_PID = 3531
 # variable set hash-table stats:
 # Load=130/1024=13%, Rehash=0, Collisions=30/213=14%
 
@@ -281,12 +281,12 @@ VSCODE_PID = 7862
  
 
 # balancers (device 2051, inode 1247520): No files, no impossibilities so far.
-# . (device 2051, inode 1247330): 19 files, no impossibilities.
+# . (device 2051, inode 1247330): 27 files, no impossibilities.
 # cache (device 2051, inode 1247332): No files, no impossibilities so far.
-# rpc (device 2051, inode 1247487): No files, no impossibilities so far.
+# rpc (device 2051, inode 1247487): 4 files, no impossibilities so far.
 # tcp (device 2051, inode 1247491): No files, no impossibilities so far.
 
-# 19 files, no impossibilities in 5 directories.
+# 31 files, no impossibilities in 5 directories.
 
 # Implicit Rules
 
@@ -345,17 +345,32 @@ testClient: client.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcCl
 #  recipe to execute (from 'Makefile', line 43):
 	$(CC) -o $@ $^ -lpthread
 
-# Not a target:
-rpc/rpcServer.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+rpc/rpcServer.o: rpc/rpcServer.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcServer'
+#  Last modified 2022-04-09 13:15:02.232331003
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := rpc/rpcServer.o
+# automatic
+# % := 
+# automatic
+# * := rpcServer
+# automatic
+# + := rpc/rpcServer.cpp
+# automatic
+# | := 
+# automatic
+# < := rpc/rpcServer.cpp
+# automatic
+# ^ := rpc/rpcServer.cpp
+# automatic
+# ? := rpc/rpcServer.cpp
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/16=12%
+#  recipe to execute (from 'Makefile', line 30):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 # Not a target:
 cache/redisSet.o:
@@ -372,8 +387,9 @@ Makefile:
 
 json/jsonParser.o: json/jsonParser.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-04-09 13:15:00.196375366
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
@@ -383,6 +399,13 @@ server.o: server.cpp
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 35):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+# Not a target:
+rpc/rpcParser.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-19 12:11:51.748586
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 cache/cache.o:
@@ -407,7 +430,7 @@ testServer: server.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcCl
 # Not a target:
 balancer.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-05 13:37:28.245637309
+#  Last modified 2022-04-09 12:33:58.485076738
 #  File has been updated.
 #  Successfully updated.
 
@@ -451,48 +474,40 @@ balancers/minimumBalancer.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+rpc/rpcParser.o: rpc/rpcParser.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rpcParser'
+#  Last modified 2022-04-09 13:15:00.728363771
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 30):
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
 # Not a target:
-rpc/rpcParser.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+rpc/rpcServer.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-09 13:18:55.659451856
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 json/jsonParser.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2021-10-19 11:00:06.90757
+#  File has been updated.
+#  Successfully updated.
 
 balancer.o: balancer.cpp
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2022-04-09 13:14:59.464391326
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := balancer.o
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := balancer.cpp
-# automatic
-# | := 
-# automatic
-# < := balancer.cpp
-# automatic
-# ^ := balancer.cpp
-# automatic
-# ? := balancer.cpp
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/16=12%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 33):
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 balancer: balancer.o json/jsonParser.o rpc/rpcParser.o rpc/rpcServer.o rpc/rpcClient.o threadPool/threadPool.o tcp/tcpServer.o cache/redisSet.o cache/cache.o balancers/baseBalancer.o balancers/minimumBalancer.o balancers/hashBalancer.o balancers/connectionBalancer.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-04-09 13:15:12.112116235
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -519,19 +534,19 @@ threadPool/threadPool.cpp:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=28/1024=3%, Rehash=0, Collisions=2/78=3%
+# Load=30/1024=3%, Rehash=0, Collisions=2/85=2%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 53 / storage = 651 B / avg = 12 B
-# current buf: size = 8162 B / used = 651 B / count = 53 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 62 / storage = 781 B / avg = 12 B
+# current buf: size = 8162 B / used = 781 B / count = 62 / avg = 12 B
 
-# strcache performance: lookups = 96 / hit rate = 44%
+# strcache performance: lookups = 113 / hit rate = 45%
 # hash-table stats:
-# Load=53/8192=1%, Rehash=0, Collisions=1/96=1%
-# Finished Make data base on Tue Apr  5 13:48:14 2022
+# Load=62/8192=1%, Rehash=0, Collisions=1/113=1%
+# Finished Make data base on Sun Apr 17 15:40:44 2022
 
  
