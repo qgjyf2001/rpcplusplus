@@ -6,9 +6,9 @@ using add2Func=std::function<std::vector<std::string>(std::vector<std::pair<int,
 int main()
 {    
     std::vector<std::thread*> vec;
-    for (int i=0;i<1000;i++)
+    for (int i=0;i<100;i++)
     vec.push_back(new std::thread([](){
-        rpcClient client("test.service");
+        rpcClient client("test.service",rpcClient::CLIENT);
         auto add=client.makeRpcCall<addFunc>("add");
         auto add2=client.makeRpcCall<add2Func>("add2");
         std::vector<std::string> a={"abcd","efgh","ijkl"};

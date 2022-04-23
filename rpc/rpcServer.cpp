@@ -13,7 +13,7 @@ void rpcServer::free(int sockfd)
         futureMap.erase(sockfd);
 }
 void rpcServer::registService(std::string service,std::string ip,int port) {
-    rpcClient client("127.0.0.1",8080);
+    rpcClient client(config::hosts);
     using registFunc=std::function<std::map<std::string,std::string>(std::string,std::string)>;
     auto regist=client.makeRpcCall<registFunc>("insertService");
     regist(service,ip+":"+std::to_string(port));

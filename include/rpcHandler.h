@@ -61,11 +61,17 @@ private:
     std::map<std::string,std::function<JsonParser(JsonParser&)>> rpcMap;
 public:
     rpcHandler(std::string service=""):service(service) {
-
+        addRpcHandler("ping",rpcHandler::ping);
     }
     JsonParser handleRPC(JsonParser json)
     {
         return rpcMap[json["name"].toString()](json);
+    }
+    static std::string ping(std::string msg) {
+        if (msg=="ping")
+            return "pong";
+        else
+            return "error";
     }
     template <typename F>
     void addRpcHandler(std::string name,F& func)

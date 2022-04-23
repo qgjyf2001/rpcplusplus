@@ -10,6 +10,7 @@ DEFINE_int32(port,10011,"port");
 
 std::vector<std::string>  add(std::vector<std::string> a,std::vector<long long> b)
 {
+    std::cout<<"[add]"<<std::endl;
     if (a.size()!=b.size())
         return std::vector<std::string>();
     std::vector<std::string> result;
