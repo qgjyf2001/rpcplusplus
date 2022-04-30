@@ -114,6 +114,7 @@ public:
     {
         freeAll();
     }
+    friend std::ostream& operator<<(std::ostream &os,JsonParser&& parser);
 private:
     template<char... ch>
     static inline void moveForwardPtr(std::string::iterator& pos,std::string::iterator end,bool equal=true)

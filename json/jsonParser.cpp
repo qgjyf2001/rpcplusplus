@@ -111,3 +111,7 @@ JsonParser::JsonParser(std::string* message,Type type,bool checkEnd,std::string:
            JSONPanic("illegal syntax");
         }
 }
+std::ostream& operator<<(std::ostream &os,JsonParser&& parser) {
+    os<<(std::string)parser;
+    return os;
+}

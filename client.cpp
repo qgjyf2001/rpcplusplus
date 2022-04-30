@@ -5,25 +5,24 @@ using add2Func=std::function<std::vector<std::string>(std::vector<std::pair<int,
 #include <thread>
 int main()
 {    
-    std::vector<std::thread*> vec;
-    for (int i=0;i<100;i++)
-    vec.push_back(new std::thread([](){
-        rpcClient client("test.service",rpcClient::CLIENT);
-        auto add=client.makeRpcCall<addFunc>("add");
-        auto add2=client.makeRpcCall<add2Func>("add2");
+    std::vector<std::future<std::vector<std::string>>> vec;
+    std::vector<std::shared_ptr<rpcClient>> clients;
+    for (int i=0;i<300;i++) {
+        auto client=std::make_shared<rpcClient>("test.service",rpcClient::CLIENT);
+        clients.push_back(client);
+        auto add=client->makeRpcSyncCall<addFunc>("add");
         std::vector<std::string> a={"abcd","efgh","ijkl"};
         std::vector<long long> b={12345,12346,12347};
         std::vector<long long> c={54321,64321,74321};
         auto result=add(a,b);
-        result=add(result,c);
-        std::vector<std::pair<int,std::string>> d={{12345,"abcd"},{12346,"efgh"},{12347,"ijkl"}};
-        result=add2(d,54321);
+        vec.push_back(std::move(result));
+    }
+    for (auto &v:vec) {
+        auto result=v.get();
         for (auto each:result)
         {
             std::cout<<each<<std::endl;
         }
-    }));
-    for (auto v:vec)
-        v->join();
+    }
     return 0;
 }

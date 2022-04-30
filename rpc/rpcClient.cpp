@@ -28,9 +28,9 @@ rpcClient::rpcClient(std::string service,connectionType type,std::vector<std::pa
             throw std::runtime_error("connect error");
         }
         refreshThread=new std::thread([&](){
-            while (!shutdownRefersh) {
+            auto shutdown=shutdownRefersh.get_future();
+            while (shutdown.wait_for(std::chrono::seconds(10))==std::future_status::timeout) {
                 refreshFdCache();
-                std::this_thread::sleep_for(std::chrono::seconds(10));
             }
         });
     }
@@ -45,26 +45,26 @@ void rpcClient::refreshFdCache() {
     for (auto ipport:ipports) {
         std::vector<std::string> ipAndPort;
         boost::split(ipAndPort,ipport,boost::is_any_of(":"));
-        connectOne(ipAndPort[0],std::atoi(ipAndPort[1].c_str()),fdCache);
+        if (connectOne(ipAndPort[0],std::atoi(ipAndPort[1].c_str()),fdCache));
     }
     
 }
-void rpcClient::connectOne(std::string &ip,int port,fdCacheType &mCache) {
+bool rpcClient::connectOne(std::string &ip,int port,fdCacheType &mCache) {
     std::lock_guard<std::mutex> lck(mutex);
     std::string ipport=ip+":"+std::to_string(port);
     if (connectedIpports.find(ipport)!=connectedIpports.end()) {
-        return;
+        return true;
     }
     int sockfd=socket(AF_INET,SOCK_STREAM,0);
     if (sockfd==-1)
-        return;
+        return false;
     sockaddr_in addr;
     bzero(&addr,sizeof(addr));
     addr.sin_family=AF_INET;
     addr.sin_port=htons(port);
     inet_pton(AF_INET,ip.c_str(),&addr.sin_addr);
     if (connect(sockfd,(sockaddr*)&addr,sizeof(addr))<0) {
-        return;
+        return false;
     }
     sockaddr_in sa;
     socklen_t len=sizeof(sa);
@@ -74,12 +74,14 @@ void rpcClient::connectOne(std::string &ip,int port,fdCacheType &mCache) {
     connectedIpportsMap[sockfd]=ipport;
     connectedIpports.insert(ipport);
     mCache.insert("connected",sockfd);
+    return true;
 }
 JsonParser rpcClient::remoteCall(JsonParser json) {
     return remoteCall(json,fdCache);
 }
 JsonParser rpcClient::remoteCall(JsonParser json,rpcClient::fdCacheType& mCache)
 {
+    std::lock_guard<std::mutex> rpcLck(rpcMutex);
     while (true) {
         auto sockfds=mCache.get("connected");
         auto sz=sockfds.size();
@@ -162,7 +164,7 @@ JsonParser rpcClient::remoteCall(JsonParser json,rpcClient::fdCacheType& mCache)
 rpcClient::~rpcClient()
 {
     if (refreshThread!=nullptr) {
-        shutdownRefersh=true;
+        shutdownRefersh.set_value(true);
         refreshThread->join();
     }
     for (auto sockfd:fdCache.get("connected"))
