@@ -45,7 +45,7 @@ void rpcClient::refreshFdCache() {
     for (auto ipport:ipports) {
         std::vector<std::string> ipAndPort;
         boost::split(ipAndPort,ipport,boost::is_any_of(":"));
-        if (connectOne(ipAndPort[0],std::atoi(ipAndPort[1].c_str()),fdCache));
+        connectOne(ipAndPort[0],std::atoi(ipAndPort[1].c_str()),fdCache);
     }
     
 }
@@ -64,6 +64,7 @@ bool rpcClient::connectOne(std::string &ip,int port,fdCacheType &mCache) {
     addr.sin_port=htons(port);
     inet_pton(AF_INET,ip.c_str(),&addr.sin_addr);
     if (connect(sockfd,(sockaddr*)&addr,sizeof(addr))<0) {
+        close(sockfd);
         return false;
     }
     sockaddr_in sa;
