@@ -1,7 +1,8 @@
-all:balancer dotServer testClient testServer
+all:balancer dotServer testClient testServer dotWebServer
 
 CC=g++
 CXXFLAGS=-std=c++17 -g
+MAKE=make
 INCLUDE=./include
 THREADPOOL=./threadPool
 THREADPOOLTARGET=$(THREADPOOL)/threadPool.o
@@ -17,6 +18,8 @@ BALANCER=./balancers
 BALANCERTARGET=$(BALANCER)/baseBalancer.o $(BALANCER)/minimumBalancer.o $(BALANCER)/hashBalancer.o $(BALANCER)/connectionBalancer.o
 DOTTER=./dotter
 DOTTERTARGET=$(DOTTER)/dotterClient.o
+WEBSERVER=./CppHttpServer
+WEBSERVERTARGET=$(WEBSERVER)/libCppServer.a
 
 $(BALANCER)/%.o:$(BALANCER)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
@@ -32,6 +35,8 @@ $(JSONPARSERTARGET):$(JSONPARSER)/jsonParser.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 $(RPC)/%.o:$(RPC)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+$(WEBSERVERTARGET):
+	cd $(WEBSERVER) && $(MAKE)
 
 balancer.o:balancer.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
@@ -41,6 +46,8 @@ client.o:client.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 dotter.o:dotter.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+dotWebServer.o:webServer.cpp
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET)
 	$(CC) -o $@ $^ -lhiredis -lpthread -lcrypto
 dotServer:dotter.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET)
@@ -49,10 +56,14 @@ testServer:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTA
 	$(CC) -o $@ $^ -lpthread -lgflags
 testClient:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET)
 	$(CC) -o $@ $^ -lpthread
-
+dotWebServer:dotWebServer.o $(WEBSERVERTARGET) $(RPCTARGET) $(DOTTERTARGET)
+	$(CC) -o $@ $^ -lpthread -L$(WEBSERVER) -lCppServer
+	
 clean:
 	find . -name '*.o' -type f -print -exec rm -rf {} \;
 	rm balancer
 	rm testServer
 	rm testClient
 	rm dotServer
+	rm dotWebServer
+	cd $(WEBSERVER) && $(MAKE) clean

@@ -1,0 +1,3 @@
+[submodule "CppHttpServer"]
+	path = CppHttpServer
+	url = https://github.com/qgjyf2001/CppHttpServer
