@@ -3,6 +3,7 @@
 #include "../cache/LRUSetCache.h"
 #include "../cache/rwSetCache.h"
 #include "../cache/redisSet.h"
+#include "../cache/redisZset.h"
 
 #include <future>
 

@@ -1,4 +1,4 @@
-all:balancer testClient testServer
+all:balancer dotServer testClient testServer
 
 CC=g++
 CXXFLAGS=-std=c++17 -g
@@ -12,11 +12,15 @@ RPCTARGET=$(RPC)/rpcParser.o $(RPC)/rpcServer.o $(RPC)/rpcClient.o
 TCP=./tcp
 TCPTARGET=$(TCP)/tcpServer.o
 CACHE=./cache
-CACHETARGET=$(CACHE)/redisSet.o $(CACHE)/cache.o
+CACHETARGET=$(CACHE)/redisSet.o $(CACHE)/cache.o $(CACHE)/redisZset.o
 BALANCER=./balancers
 BALANCERTARGET=$(BALANCER)/baseBalancer.o $(BALANCER)/minimumBalancer.o $(BALANCER)/hashBalancer.o $(BALANCER)/connectionBalancer.o
+DOTTER=./dotter
+DOTTERTARGET=$(DOTTER)/dotterClient.o
 
 $(BALANCER)/%.o:$(BALANCER)/%.cpp
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+$(DOTTER)/%.o:$(DOTTER)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 $(CACHE)/%.o:$(CACHE)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
@@ -35,11 +39,15 @@ server.o:server.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 client.o:client.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+dotter.o:dotter.cpp
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET)
 	$(CC) -o $@ $^ -lhiredis -lpthread -lcrypto
+dotServer:dotter.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET)
+	$(CC) -o $@ $^ -lhiredis -lpthread -lgflags
 testServer:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) 
 	$(CC) -o $@ $^ -lpthread -lgflags
-testClient:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) 
+testClient:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET)
 	$(CC) -o $@ $^ -lpthread
 
 clean:
@@ -47,3 +55,4 @@ clean:
 	rm balancer
 	rm testServer
 	rm testClient
+	rm dotServer

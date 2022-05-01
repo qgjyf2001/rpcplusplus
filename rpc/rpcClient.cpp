@@ -122,7 +122,7 @@ JsonParser rpcClient::remoteCall(JsonParser json,rpcClient::fdCacheType& mCache)
                     now+=std::string(buf,n);
                 }
                 rpcRequest=rpcParser::parse(now);
-            }    
+            }
             return JsonParser(&rpcRequest.message);
         }
         catch (std::exception& e) {
