@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "jsonParser.h"
+#define RPCMESSAGELENGTH 5
 struct  rpcMessage
 {
     int length;

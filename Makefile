@@ -36,7 +36,7 @@ $(JSONPARSERTARGET):$(JSONPARSER)/jsonParser.cpp
 $(RPC)/%.o:$(RPC)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 $(WEBSERVERTARGET):
-	cd $(WEBSERVER) && $(MAKE)
+	cd $(WEBSERVER) && $(MAKE) libCppServer.a
 
 balancer.o:balancer.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
@@ -48,13 +48,13 @@ dotter.o:dotter.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 dotWebServer.o:webServer.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
-balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET)
+balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lhiredis -lpthread -lcrypto
-dotServer:dotter.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET)
+dotServer:dotter.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lhiredis -lpthread -lgflags
-testServer:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) 
+testServer:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lpthread -lgflags
-testClient:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET)
+testClient:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lpthread
 dotWebServer:dotWebServer.o $(WEBSERVERTARGET) $(RPCTARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lpthread -L$(WEBSERVER) -lCppServer

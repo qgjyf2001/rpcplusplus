@@ -1,5 +1,6 @@
 #include "rpcServer.h"
 #include "rpcClient.h"
+
 rpcServer::rpcServer(rpcHandler *handler,int maxThreads)
 {
     this->handler=handler;
@@ -45,7 +46,7 @@ void rpcServer::doRpc(int sockfd,std::string httpRequest)
         {
             try
             {
-                request=rpcParser::parse(httpRequest);    
+                request=rpcParser::parse(httpRequest);
                 if (request.length>request.message.length())
                 {
                     uncompleted[sockfd]=std::make_pair(httpRequest,request.length-request.message.length());

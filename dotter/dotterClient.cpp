@@ -1,4 +1,5 @@
 #include "dotterClient.h"
+#include "rpcClient.h"
 std::shared_ptr<dotterClientImpl> dotterClient::client=nullptr;
 dotterClientImpl::dotterClientImpl(std::string dotterService)
 {

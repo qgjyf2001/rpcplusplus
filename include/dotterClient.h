@@ -1,7 +1,12 @@
 #ifndef DOTTERCLIENT_H
 #define DOTTERCLIENT_H
-#include "rpcClient.h"
 #include "config.h"
+
+#include <map>
+#include <mutex>
+#include <future>
+#include <thread>
+class rpcClient;
 class dotterClientImpl
 {
 private:

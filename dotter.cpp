@@ -26,7 +26,7 @@ std::map<std::string,int> getThroughput(std::string key,int fromTimeStamp,int to
 int main(int argc,char** argv)
 {    
     google::ParseCommandLineFlags(&argc,&argv,true);
-    rpcHandler* handler=new rpcHandler(config::dotterService);
+    rpcHandler* handler=new rpcHandler(config::dotterService,true);
     handler->AddRpcHandler(throughput);
     handler->AddRpcHandler(getThroughput);
     poolServer *server=new poolServer(handler,FLAGS_port);

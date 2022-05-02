@@ -7,8 +7,8 @@
 #include <strings.h>
 #include <unistd.h>
 
-#include "rpcHandler.h"
 #include "config.h"
+#include "rpcHandler.h"
 #include "cache.h"
 class rpcClient;
 template <typename returnType,typename ...args>

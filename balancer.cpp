@@ -1,6 +1,7 @@
 #include <iostream>
 #include <boost/algorithm/string.hpp>
 
+
 #include "cache.h"
 #include "rpcHandler.h"
 #include "rpcClient.h"
@@ -54,7 +55,7 @@ std::map<std::string,std::string> eraseService(std::string service,std::string i
 }
 int main() {
     bool result;
-    rpcHandler* handler=new rpcHandler();
+    rpcHandler* handler=new rpcHandler(true);
     handler->AddRpcHandler(newService);
     handler->AddRpcHandler(getService);
     handler->AddRpcHandler(insertService);

@@ -115,7 +115,7 @@ JsonParser rpcClient::remoteCall(JsonParser json,rpcClient::fdCacheType& mCache)
             if (rpcRequest.length>rpcRequest.message.length())
             {
                 std::string now=message;
-                int length=rpcRequest.length;
+                int length=rpcRequest.length+RPCMESSAGELENGTH+4;
                 while (now.length()<length)
                 {
                     auto n=read(sockfd,buf,MAXLINE);

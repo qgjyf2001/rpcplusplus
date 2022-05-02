@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 #include "serialization.h"
+#include "dotterClient.h"
 #include <functional>
 
 #define AddRpcHandler(name) addRpcHandler(#name,name)
@@ -59,12 +60,22 @@ private:
         return std::make_tuple();
     }
     std::map<std::string,std::function<JsonParser(JsonParser&)>> rpcMap;
+    bool nodot;
 public:
-    rpcHandler(std::string service=""):service(service) {
+    rpcHandler(std::string service,bool nodot=false):service(service),nodot(nodot) {
         addRpcHandler("ping",rpcHandler::ping);
+        if (!nodot)
+            dotterClient::init();
+    }
+    rpcHandler(const char* service,bool nodot=false):rpcHandler(std::string(service),nodot){
+    }
+    rpcHandler(bool nodot=false):rpcHandler("",nodot)
+    {
     }
     JsonParser handleRPC(JsonParser json)
     {
+        if (!nodot)
+            dotterClient::throughput(service+".call.total.throughput",1);
         return rpcMap[json["name"].toString()](json);
     }
     static std::string ping(std::string msg) {
