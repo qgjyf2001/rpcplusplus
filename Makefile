@@ -46,6 +46,9 @@ client.o:client.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 dotter.o:dotter.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+
+web:
+	cd ./app&&yarn build
 dotWebServer.o:webServer.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET) $(DOTTERTARGET)

@@ -17,6 +17,16 @@ std::pair\<U,V\>
 
 支持诸如std::vector\<std::map\<std::string,int\>\>等嵌套类型
 
+### 编译方式
+
+编译后端和各类链接库
+
+make
+
+编译前端
+
+make web
+
 ### 使用方法
 
 balancer是一个简易的负载均衡器，可以采用服务发现方式进行rpc调用（见server.cpp和client.cpp），服务发现的负载均衡策略可以选择在server端进行或者在client端（rpcClient::CLIENT）进行，也可以采用直接指定ip:port集合的方式进行rpc调用。
