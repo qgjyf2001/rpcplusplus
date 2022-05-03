@@ -3,7 +3,7 @@
 
 ### 支持的类型
 
-目前仅支持参数类型和返回类型如下的函数：
+目前支持参数类型和返回类型如下的函数：
 
 int,long long等整数类型
 
@@ -16,6 +16,8 @@ std::set\<T\>
 std::pair\<U,V\>
 
 支持诸如std::vector\<std::map\<std::string,int\>\>等嵌套类型
+
+使用SERIALIZECLASS和SERIALIZEOBJECT进行声明的类（声明方式详见testClass.h）
 
 ### 编译方式
 

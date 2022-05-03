@@ -4,6 +4,49 @@
 
 #include <type_traits>
 #include <set>
+class baseSerializeClass;
+static std::map<std::string,std::vector<std::function<void(baseSerializeClass*,JsonParser&)>>> serializeMap;
+static std::map<std::string,std::vector<std::function<void(baseSerializeClass*,JsonParser&)>>> unSerializeMap;
+inline auto &getSerializeMap(std::string name) {
+    return serializeMap[name];
+}
+inline auto &getUnSerializeMap(std::string name) {
+    return unSerializeMap[name];
+}
+class baseSerializeClass
+{
+public:
+    virtual void unSerialize (JsonParser parser)
+    {
+        for (auto func:getUnSerializeMap(typeid(*this).name())) {
+            func(this,parser);
+        }
+        return;
+    }
+    virtual operator JsonParser()
+    {
+        JsonParser json;
+        for (auto func:getSerializeMap(typeid(*this).name())) {
+            func(this,json);
+        }
+        return json;
+    }
+};
+#define SERIALIZECLASS(className) class className:public baseSerializeClass
+#define SERIALIZEOBJECT(objectType,objectName) objectType objectName;\
+objectType objectName##Serialize=(getSerializeMap(typeid(*this).name()).emplace_back([](baseSerializeClass* mClass,JsonParser& parser){\
+        parser[#objectName]=(dynamic_cast<decltype(this)>(mClass))->objectName;\
+    }),objectType());\
+objectType objectName##UnSerialize=(getUnSerializeMap(typeid(*this).name()).emplace_back([](baseSerializeClass* mClass,JsonParser& parser){\
+        (dynamic_cast<decltype(this)>(mClass))->objectName=serialize::doUnSerialize<objectType>(parser[#objectName]);\
+    }),objectType());
+#define SERIALIZEOBJECTWITHVALUE(objectType,objectName,initValue) objectType objectName=initValue;\
+objectType objectName##Serialize=(getSerializeMap(typeid(*this).name()).emplace_back([](baseSerializeClass* mClass,JsonParser& parser){\
+        parser[#objectName]=(dynamic_cast<decltype(this)>(mClass))->objectName;\
+    }),objectType(initValue));\
+objectType objectName##UnSerialize=(getUnSerializeMap(typeid(*this).name()).emplace_back([](baseSerializeClass* mClass,JsonParser& parser){\
+        (dynamic_cast<decltype(this)>(mClass))->objectName=serialize::doUnSerialize<objectType>(parser[#objectName]);\
+    }),objectType(initValue));
 class serialize
 {
 private:
@@ -70,6 +113,17 @@ public:
             static constexpr auto value=std::is_same<decltype(_isString<T>(nullptr)),char>::value&&!isInteger<T>::value;
     };
     template <typename T>
+    struct isSerializable
+    {
+        private:
+            template <typename U,typename=decltype(&U::unSerialize)>
+            static char _isSerializable(void*);
+            template <typename>
+            static int _isSerializable(...);
+        public:
+            static constexpr auto value=std::is_same<decltype(_isSerializable<T>(nullptr)),char>::value;
+    };
+    template <typename T>
     static JsonParser doSerialize(T data){   
         if constexpr(std::is_same<T,JsonParser>::value) {
             return data;
@@ -77,6 +131,10 @@ public:
         else if constexpr(isString<T>::value)
         {
             return JsonParser(std::make_shared<std::string>(std::string(data)));
+        }
+        else if constexpr(isSerializable<T>::value)
+        {
+            return (JsonParser)data;
         }
         else if constexpr(isSet<T>::value) 
         {
@@ -129,6 +187,12 @@ public:
         else if constexpr(isString<T>::value)
         {
             return data.toString();
+        }
+        else if constexpr(isSerializable<T>::value)
+        {
+            T tmp;
+            tmp.unSerialize(data);
+            return tmp;
         }
         else if constexpr(isInteger<T>::value)
         {

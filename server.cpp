@@ -3,6 +3,7 @@
 #include "rpcParser.h"
 #include "tcpServer.h"
 #include "serialization.h"
+#include "testClass.h"
 
 #include <gflags/gflags.h>
 
@@ -19,15 +20,9 @@ std::vector<std::string>  add(std::vector<std::string> a,std::vector<long long> 
         result.emplace_back(a[i]+std::to_string(b[i]));
     return result;
 }
-std::vector<std::string> add2(std::vector<std::pair<int,std::string>> a,int b)
+testClass add2(testClass a,testClass b)
 {
-    std::vector<std::string> result;
-    for (auto &&each:a)
-    {
-        auto &&[u,v]=each;
-        result.push_back(std::to_string(u)+v+std::to_string(b));
-    }
-    return result;
+    return testClass(a.a+b.a,a.b+b.b,a.c+b.c,a.d+b.d);
 }
 int main(int argc,char** argv)
 {    
