@@ -18,8 +18,9 @@ private:
     safeQueue<std::function<void()>> queue;
     std::thread *threadLoop(int num);
     std::vector<std::thread*> threads;
-    std::condition_variable consumer;
-    std::mutex mutex;
+    std::condition_variable consumer,waitConsumer;
+    std::mutex mutex,waitMutex;
+    std::atomic<int> workingThread=0;
 public:
     threadPool(int threadNum);
     template <typename F,typename ...args>
@@ -35,6 +36,7 @@ public:
         consumer.notify_one();
         return taskPtr->get_future();
     }
+    void waitAll();
     ~threadPool();
 };
 #endif

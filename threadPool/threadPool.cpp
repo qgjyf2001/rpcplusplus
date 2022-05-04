@@ -17,14 +17,26 @@ std::thread* threadPool::threadLoop(int num)
             if (queue.empty()) {
                 consumer.wait(lck);
             }
+            workingThread++;
             bool result;
             std::function<void()> f;
             result=queue.pop(f);
             if (result) {
                 f();
             }
+            workingThread--;
+            waitConsumer.notify_one();
         }
     });
+}
+
+void threadPool::waitAll()
+{
+    std::unique_lock<std::mutex> lck(waitMutex);
+    while (workingThread!=0||!queue.empty())
+    {
+        waitConsumer.wait(lck);
+    }
 }
 
 threadPool::~threadPool()

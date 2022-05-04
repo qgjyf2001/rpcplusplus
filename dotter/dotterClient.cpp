@@ -14,12 +14,15 @@ dotterClientImpl::dotterClientImpl(std::string dotterService)
 }
 void dotterClientImpl::report()
 {
-    std::lock_guard<std::mutex> lck(mutex);
-    if (dotMap.size()==0) {
+    decltype(dotMap) tmpMap;
+    {
+        std::lock_guard<std::mutex> lck(mutex);
+        swap(dotMap,tmpMap);
+    }
+    if (tmpMap.size()==0) {
         return;
     }
-    throughput_(dotMap);
-    dotMap.clear();
+    throughput_(tmpMap);
 }
 int dotterClientImpl::throughput_(std::map<std::string,std::map<std::string,int>> &reportMap)
 {
