@@ -58,6 +58,9 @@ const DemoLine = () => {
         />
         <ProFormDateTimeRangePicker
           convertValue={(values) => {
+            if (values === undefined) {
+              return values
+            }
             return [values[0], values[1] === "now" ? moment().format('YYYY-MM-DD HH:mm:ss') : values[1]]
           }}
           transform={(values) => {

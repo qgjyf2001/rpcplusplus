@@ -1,4 +1,4 @@
-all:balancer dotServer testClient testServer dotWebServer
+all:balancer dotServer testClient testServer dotWebServer pressure
 
 CC=g++
 CXXFLAGS=-std=c++17 -g
@@ -9,7 +9,8 @@ THREADPOOLTARGET=$(THREADPOOL)/threadPool.o
 JSONPARSER=./json
 JSONPARSERTARGET=$(JSONPARSER)/jsonParser.o
 RPC=./rpc
-RPCTARGET=$(RPC)/rpcParser.o $(RPC)/rpcServer.o $(RPC)/rpcClient.o
+RPCCLIENTTARGET=$(RPC)/rpcParser.o $(RPC)/rpcClient.o
+RPCTARGET=$(RPCCLIENTTARGET) $(RPC)/rpcServer.o
 TCP=./tcp
 TCPTARGET=$(TCP)/tcpServer.o
 CACHE=./cache
@@ -18,6 +19,8 @@ BALANCER=./balancers
 BALANCERTARGET=$(BALANCER)/baseBalancer.o $(BALANCER)/minimumBalancer.o $(BALANCER)/hashBalancer.o $(BALANCER)/connectionBalancer.o
 DOTTER=./dotter
 DOTTERTARGET=$(DOTTER)/dotterClient.o
+KAFKA=./kafka
+KAFKATARGET=$(KAFKA)/kafka.o
 WEBSERVER=./CppHttpServer
 WEBSERVERTARGET=$(WEBSERVER)/libCppServer.a
 
@@ -35,6 +38,8 @@ $(JSONPARSERTARGET):$(JSONPARSER)/jsonParser.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 $(RPC)/%.o:$(RPC)/%.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+$(KAFKA)/%.o:$(KAFKA)/%.cpp
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 $(WEBSERVERTARGET):
 	cd $(WEBSERVER) && $(MAKE) libCppServer.a
 
@@ -46,22 +51,25 @@ client.o:client.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 dotter.o:dotter.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
+pressure.o:pressure.cpp
+	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
 
 web:
 	cd ./app&&yarn build
 dotWebServer.o:webServer.cpp
 	$(CC) -I$(INCLUDE) $(CXXFLAGS) -c $^ -o $@
-balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET) $(DOTTERTARGET)
-	$(CC) -o $@ $^ -lhiredis -lpthread -lcrypto
-dotServer:dotter.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(DOTTERTARGET)
-	$(CC) -o $@ $^ -lhiredis -lpthread -lgflags
-testServer:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(DOTTERTARGET)
-	$(CC) -o $@ $^ -lpthread -lgflags
-testClient:client.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(DOTTERTARGET)
+balancer:balancer.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(BALANCERTARGET) $(DOTTERTARGET) $(KAFKATARGET)
+	$(CC) -o $@ $^ -lhiredis -lpthread -lcrypto -lrdkafka++
+dotServer:dotter.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(CACHETARGET) $(DOTTERTARGET) $(KAFKATARGET)
+	$(CC) -o $@ $^ -lhiredis -lpthread -lgflags -lrdkafka++
+testServer:server.o $(JSONPARSERTARGET) $(RPCTARGET) $(THREADPOOLTARGET) $(TCPTARGET) $(DOTTERTARGET) $(KAFKATARGET)
+	$(CC) -o $@ $^ -lpthread -lgflags -lrdkafka++
+testClient:client.o $(JSONPARSERTARGET) $(RPCCLIENTTARGET) $(THREADPOOLTARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lpthread
-dotWebServer:dotWebServer.o $(WEBSERVERTARGET) $(RPCTARGET) $(DOTTERTARGET)
+dotWebServer:dotWebServer.o $(WEBSERVERTARGET) $(RPCCLIENTTARGET) $(DOTTERTARGET)
 	$(CC) -o $@ $^ -lpthread -L$(WEBSERVER) -lCppServer
-	
+pressure:pressure.o $(JSONPARSERTARGET) $(RPCCLIENTTARGET) $(THREADPOOLTARGET) $(KAFKATARGET)
+	$(CC) -o $@ $^ -lpthread -lgflags -lrdkafka++
 clean:
 	find . -name '*.o' -type f -print -exec rm -rf {} \;
 	rm balancer
@@ -69,4 +77,5 @@ clean:
 	rm testClient
 	rm dotServer
 	rm dotWebServer
+	rm pressure
 	cd $(WEBSERVER) && $(MAKE) clean

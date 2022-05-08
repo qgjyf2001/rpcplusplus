@@ -1,5 +1,8 @@
 #include "rpcServer.h"
 #include "rpcClient.h"
+#include "kafka.h"
+
+#include <boost/algorithm/string.hpp>
 
 rpcServer::rpcServer(rpcHandler *handler,int maxThreads)
 {
@@ -70,6 +73,11 @@ void rpcServer::doRpc(int sockfd,std::string httpRequest)
             ip=std::string(inet_ntoa(sa.sin_addr))+":"+std::to_string(ntohs(sa.sin_port));
         }
         auto result=handler->handleRPC(rpc);
+        if (handler->service!="") {
+            std::string kafkaTopic=handler->service;
+            boost::replace_all(kafkaTopic,".","_");
+            auto result=kafkaProducer::instance()->produce(kafkaTopic,rpc).get();
+        }
         auto responseText=rpcMessage(result).toString();
         return responseText;
     });
