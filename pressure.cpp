@@ -16,8 +16,9 @@ void exitHandler(int signal)
 {
     isTerminate=true;
 }
-int main()
+int main(int argc,char** argv)
 {
+    google::ParseCommandLineFlags(&argc,&argv,true);
     signal(SIGINT,exitHandler);
     std::string service(FLAGS_service);
     rpcClient client(service);
@@ -34,11 +35,13 @@ int main()
             break;
         }
         auto asyncResult=consumer->consume(timeout);
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(timeout));
         auto result=asyncResult.get();
         if (!result.empty())
         {
-            std::cout<<client.remoteCall(JsonParser(new std::string(result)))<<std::endl;
+            JsonParser json(new std::string(result));
+            json["pressure"]="tagged";
+            std::cout<<client.remoteCall(json)<<std::endl;
         }
     }
     return 0;

@@ -74,9 +74,13 @@ void rpcServer::doRpc(int sockfd,std::string httpRequest)
         }
         auto result=handler->handleRPC(rpc);
         if (handler->service!="") {
-            std::string kafkaTopic=handler->service;
-            boost::replace_all(kafkaTopic,".","_");
-            auto result=kafkaProducer::instance()->produce(kafkaTopic,rpc).get();
+            auto &iter=rpc.getIterator();
+            if (iter.find("pressure")==iter.end())
+            {
+                std::string kafkaTopic=handler->service;
+                boost::replace_all(kafkaTopic,".","_");
+                auto result=kafkaProducer::instance()->produce(kafkaTopic,rpc).get();
+            }
         }
         auto responseText=rpcMessage(result).toString();
         return responseText;
