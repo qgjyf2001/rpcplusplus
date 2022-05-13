@@ -94,7 +94,11 @@ std::string rpcServer::getResult(int sockfd,bool& result) {
         return "";
     }
     result=true;
-    auto httpResult=futureMap[sockfd].get();
+    auto &future=futureMap[sockfd];
+    if (future.wait_for(std::chrono::duration(std::chrono::seconds(0)))==std::future_status::timeout) {
+        return "";
+    }
+    auto httpResult=future.get();
     futureMap.erase(sockfd);
     return httpResult;
 }
