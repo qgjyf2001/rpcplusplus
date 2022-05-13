@@ -79,7 +79,7 @@ void rpcServer::doRpc(int sockfd,std::string httpRequest)
             {
                 std::string kafkaTopic=handler->service;
                 boost::replace_all(kafkaTopic,".","_");
-                auto result=kafkaProducer::instance()->produce(kafkaTopic,rpc).get();
+                auto result=kafkaProducer::instance()->produce(kafkaTopic,rpc);
             }
         }
         auto responseText=rpcMessage(result).toString();

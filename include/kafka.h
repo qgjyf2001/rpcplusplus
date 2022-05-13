@@ -4,18 +4,27 @@
 #include <map>
 #include <memory>
 #include <future>
-#include <shared_mutex>
+#include <mutex>
 
 #include <librdkafka/rdkafkacpp.h>
 
+#include "safeQueue.h"
 #include "config.h"
 class kafkaProducer
 {
 private:
     static std::shared_ptr<kafkaProducer> instance_;
-    std::shared_mutex mutex;
     std::map<std::string,std::shared_ptr<RdKafka::Producer>> kafkaMap;
+    safeQueue<std::pair<std::string,std::string>> produceQueue;
+    std::mutex mutex;
+    std::condition_variable consumer;
+    bool isShutdown=false;
+    std::thread thread;
 public:
+    kafkaProducer()
+    {
+        thread=std::thread(&kafkaProducer::syncThread,this);
+    }
     static std::shared_ptr<kafkaProducer> instance()
     {
         if (instance_==nullptr) {
@@ -23,7 +32,9 @@ public:
         }
         return instance_;
     }
-    std::future<int> produce(std::string kafkaName,std::string message);
+    void syncThread();
+    int produce_(std::string kafkaName,std::string message);
+    int produce(std::string kafkaName,std::string message);
     int createKafkaInstance(std::string kafkaName);
     ~kafkaProducer()
     {
@@ -32,6 +43,8 @@ public:
             std::cout<<"flush kafka producer:"<<name<<std::endl;
             producer->flush(10*1000);
         }
+        isShutdown=true;
+        thread.join();
     }
 };
 

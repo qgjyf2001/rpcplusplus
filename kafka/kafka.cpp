@@ -1,26 +1,40 @@
 #include "kafka.h"
 #include "unistd.h"
 std::shared_ptr<kafkaProducer> kafkaProducer::instance_=nullptr;
-std::future<int> kafkaProducer::produce(std::string kafkaName,std::string message)
+void kafkaProducer::syncThread()
 {
-    auto func=std::async([&](){
-        bool result;
+    while (!isShutdown)
+    {
+        std::unique_lock<std::mutex> lck(mutex);
+        if (produceQueue.empty())
         {
-            std::shared_lock<std::shared_mutex> lck(mutex);
-            result=kafkaMap.find(kafkaName) == kafkaMap.end();
+            consumer.wait(lck);
         }
+        std::pair<std::string,std::string> data;
+        bool result=produceQueue.pop(data);
         if (result)
         {
-            std::unique_lock<std::shared_mutex> lck(mutex);
+            auto &[kafkaName,message]=data;
+            produce_(kafkaName,message);
+        }
+    }
+}
+int kafkaProducer::produce(std::string kafkaName,std::string message)
+{
+    produceQueue.push(std::make_pair(kafkaName,message));
+    std::unique_lock<std::mutex> lck(mutex);
+    consumer.notify_one();
+}
+int kafkaProducer::produce_(std::string kafkaName,std::string message)
+{
+        if (kafkaMap.find(kafkaName) == kafkaMap.end())
+        {
             createKafkaInstance(kafkaName);
         }
-        std::shared_lock<std::shared_mutex> lck(mutex);
         auto &producer=kafkaMap[kafkaName];
         auto resp=producer->produce(kafkaName,RdKafka::Topic::PARTITION_UA,RdKafka::Producer::RK_MSG_COPY,
                                     const_cast<char *>(message.data()), message.length(),nullptr,0,0,nullptr,nullptr);
         return producer->poll(0);
-    });
-    return func;
 }
 int kafkaProducer::createKafkaInstance(std::string kafkaName)
 {
